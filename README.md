@@ -60,6 +60,6 @@ Go to **Actions → Refresh dashboard → Run workflow**. When it turns green, o
 Rules and campus IDs live at the top of `scripts/build-data.mjs`. Brand colors live at the top of `index.html`.
 
 ## Brand
-- Colors: black `#000000`, Radiant orange `#E44C35`, wordmark white `#F2EEED`, cream `#E5D8C6`.
-- Logo: `radiant-logo.png` (replace with the official file anytime, same name).
-- Font: Proxima Nova. Add the `.woff2` files to `/fonts` (see `fonts/README.txt`). Note that anything in a public repo can be downloaded, so check that your web license allows self-hosting. If Radiant has Adobe Creative Cloud, an Adobe Fonts web project is the other option and needs a one-line change.
+- Colors: black `#000000`, Radiant orange `#EF3F29`, wordmark white `#F2EEED`, cream `#E5D8C6`.
+- Logo: `radiant-logo.png` (official orange/white logo).
+- Font: Proxima Nova (Regular, Semibold, Bold, Extrabold) in `/fonts` as web fonts.
