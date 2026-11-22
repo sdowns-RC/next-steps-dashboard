@@ -49,6 +49,11 @@ async function pcoGetAll(path) {
 }
 
 async function pullRaw() {
+  const missing = ["PCO_APP_ID", "PCO_SECRET"].filter((k) => !process.env[k]);
+  if (missing.length) {
+    throw new Error(`GitHub didn't pass ${missing.join(" and ")} to the job. Add them under ` +
+      `Settings → Secrets and variables → Actions → Secrets tab → "New repository secret" (not Variables, Codespaces or Dependabot).`);
+  }
   const signups = await pcoGetAll(
     "/registrations/v2/signups?filter=unarchived&include=campuses,next_signup_time&per_page=100"
   );
