@@ -82,18 +82,18 @@
 
   /* Right column */
   aside { display: grid; grid-template-rows: 1fr auto auto; gap: 22px; min-height: 0; }
-  #groups { display: flex; flex-direction: column; }
+  #groups { display: flex; flex-direction: column; padding-top: 22px; padding-bottom: 24px; }
   .ghead { display: flex; justify-content: space-between; align-items: baseline; }
   .bignum { display: flex; align-items: baseline; gap: 12px; }
-  .bignum b { font-size: 48px; font-weight: 800; line-height: 1; color: var(--text); }
-  .bignum span { font-size: 22px; font-weight: 600; color: var(--muted); }
-  .gtypes { display: flex; flex-direction: column; gap: 10px; margin-top: auto; padding-top: 12px; }
-  .gtype { background: var(--panel-2); border-radius: 4px; padding: 11px 22px; border-left: 6px solid var(--orange); }
+  .bignum b { font-size: 60px; font-weight: 800; line-height: 1; color: var(--text); }
+  .bignum span { font-size: 24px; font-weight: 600; color: var(--muted); }
+  .gtypes { display: flex; flex-direction: column; gap: 10px; flex: 1; margin-top: 12px; min-height: 0; }
+  .gtype { background: var(--panel-2); border-radius: 4px; padding: 6px 24px; border-left: 6px solid var(--orange); flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 0; }
   .gtype .top { display: flex; justify-content: space-between; align-items: baseline; }
-  .gtype .top b { font-size: 30px; font-weight: 800; }
-  .gtype .top span { font-size: 34px; font-weight: 800; color: var(--orange); }
-  .chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
-  .chip { font-size: 18px; font-weight: 600; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; }
+  .gtype .top b { font-size: 32px; line-height: 1; font-weight: 800; }
+  .gtype .top span { font-size: 40px; line-height: 1; font-weight: 800; color: var(--orange); }
+  .chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+  .chip { font-size: 19px; font-weight: 600; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; }
   .chip b { color: var(--cream); font-weight: 800; margin-left: 4px; }
 
   .events { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
