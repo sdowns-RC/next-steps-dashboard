@@ -168,7 +168,8 @@ export function build(raw, now = new Date()) {
         });
       // Keep adult classes in the order CLASS_INFO lists them; anything new goes last.
       const rank = (c) => { const i = Object.values(CLASS_INFO).findIndex((v) => v.name === c.name); return i < 0 ? 99 : i; };
-      classes.sort((x, y) => (x.section === "Adults" && y.section === "Adults" ? rank(x) - rank(y) : 0));
+      const adults = classes.filter((c) => c.section === "Adults").sort((x, y) => rank(x) - rank(y));
+      classes.splice(0, classes.length, ...classes.filter((c) => c.section !== "Adults"), ...adults);
       if (!classes.length) warnings.push(`${campus.name}: WNAR term "${s.attributes.name}" has no live classes.`);
       const term = s.attributes.name.split("|").pop().replace(new RegExp(campus.name, "i"), "").replace(/\s*-\s*/g, " – ").replace(/\s+/g, " ").trim();
       wnar = { term, starts: start.toISOString(), open: !!s.attributes.open, url: regUrl(s), classes };

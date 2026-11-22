@@ -63,7 +63,7 @@ Go to **Actions → Refresh dashboard → Run workflow**. When it turns green, o
 | Screen section | Where it comes from |
 |---|---|
 | WNAR | Registrations signups named "Wednesday Night at Radiant …" tagged to the campus. It shows the term starting soonest, and only classes that are public with seats set above 0. |
-| Groups | Active groups whose type is Gather, Grow or Go. The category comes from the group name: "young adult / college / young women / young professional" counts as **Young Adult** (this wins over Men/Women); "women / moms / mothers / sisters" counts as **Women**; "men / fathers" counts as **Men**; anything else counts as **Mixed**. These are church-wide totals. |
+| Groups | Active groups whose type is Gather, Grow or Go. The category comes from the group name: "young adult / college / young women / young professional" counts as **Young Adult** (this wins over Men/Women); "women / moms / mothers / sisters" counts as **Women**; "men / fathers" counts as **Men**; anything else counts as **Coed**. These are church-wide totals. |
 | Be Radiant / Baptism / Child Dedication | The next future date on any Registrations signup with "Be Radiant", "baptism" or "dedication" in its name, either for that campus or untagged. If there's none, the card says "New date coming soon." |
 
 Rules and campus IDs live at the top of `scripts/build-data.mjs`. Brand colors live at the top of `index.html`.
