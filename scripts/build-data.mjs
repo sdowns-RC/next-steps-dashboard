@@ -17,13 +17,23 @@ const BAPTISM_MATCH = /baptism/i;
 const DEDICATION_MATCH = /dedication/i;
 const BE_RADIANT_MATCH = /be radiant/i;
 const GROUP_TYPES = ["Gather", "Grow", "Go"]; // other group types are ignored
-const CATEGORIES = ["Men", "Women", "Young Adult", "Mixed"];
+const CATEGORIES = ["Men", "Women", "Young Adult", "Coed"];
 // Category comes from the group name. First match wins, so Young Adult beats Men/Women.
 const CATEGORY_RULES = [
   ["Young Adult", /young adult|college|young women|young men|young professional/i],
   ["Women", /\bwom[ae]n|\bsisters\b|\bmoms?\b|\bmothers?\b|\bladies\b/i],
   ["Men", /\bmen\b|\bmen['’]?s\b|\bfathers?\b|\bbrothers\b/i],
 ];
+// Plain-English line shown under each WNAR class. Keyed by the class name in
+// Registrations (lowercase, "&" read as "and"). A class missing here still shows,
+// without a description, and the weekly run lists it under "things to check".
+const CLASS_INFO = {
+  "spirit and truth": { name: "Spirit & Truth", desc: "See the big story of the Bible and grow deeper with God." },
+  "proclaim": { name: "Proclaim", desc: "Learn to share your faith naturally in everyday life." },
+  "marriage": { name: "Marriage", desc: "Build a strong, Christ-centered marriage." },
+  "radiant school of ministry part-time": { name: "Radiant School of Ministry Part-Time", desc: "Ministry training for everyday leaders, one night a week." },
+};
+const TZ = "America/Detroit";
 // ------------------------------------------------------
 
 const API = "https://api.planningcenteronline.com";
@@ -58,6 +68,11 @@ async function pullRaw() {
     "/registrations/v2/signups?filter=unarchived&include=campuses,next_signup_time&per_page=100"
   );
   const wanted = signups.data.filter((s) => WNAR_MATCH.test(s.attributes.name));
+  // All times for the one-day events, so a date with two services shows both times.
+  const signupTimes = {};
+  for (const s of signups.data.filter((x) => [BAPTISM_MATCH, DEDICATION_MATCH, BE_RADIANT_MATCH].some((re) => re.test(x.attributes.name)))) {
+    signupTimes[s.id] = (await pcoGetAll(`/registrations/v2/signups/${s.id}/signup_times?per_page=100`)).data;
+  }
   const selectionTypes = {};
   const attendees = {};
   for (const s of wanted) {
@@ -67,7 +82,7 @@ async function pullRaw() {
   const groups = await pcoGetAll(
     "/groups/v2/groups?per_page=100&include=group_type&where[archive_status]=not_archived"
   );
-  return { signups, selectionTypes, attendees, groups };
+  return { signups, selectionTypes, attendees, signupTimes, groups };
 }
 
 // ---------- Pure transform: raw Planning Center data -> dashboard data ----------
@@ -94,7 +109,13 @@ export function build(raw, now = new Date()) {
       return null;
     }
     const { s, start } = hits[0];
-    return { date: start.toISOString(), name: s.attributes.name.trim(), open: !!s.attributes.open, url: regUrl(s) };
+    const day = (d) => new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(d);
+    const sameDay = (raw.signupTimes?.[s.id] || [])
+      .map((t) => new Date(t.attributes.starts_at))
+      .filter((d) => day(d) === day(start))
+      .sort((a, b) => a - b);
+    const times = (sameDay.length ? sameDay : [start]).map((d) => d.toISOString());
+    return { date: start.toISOString(), times: [...new Set(times)], name: s.attributes.name.trim(), open: !!s.attributes.open, url: regUrl(s) };
   };
 
   const campuses = {};
@@ -130,17 +151,24 @@ export function build(raw, now = new Date()) {
         .filter((t) => !/^\s*\[[^\]]+\]/.test(t.attributes.name) || tag.test(t.attributes.name))
         .map((t) => {
           const name = t.attributes.name.replace(/^\s*\[[^\]]+\]\s*/, "").replace(/\s+/g, " ").trim();
-          const section = /childcare|nursery/i.test(name) ? "Childcare" : /kids/i.test(name) ? "Kids" : "Adults";
+          const section = /childcare|nursery/i.test(name) ? "Childcare" : /kids/i.test(name) ? "Kids" : /^first steps/i.test(name) ? "First Steps" : "Adults";
+          const info = CLASS_INFO[name.toLowerCase().replace(/&/g, "and").replace(/\s+/g, " ").trim()];
+          if (section === "Adults" && !info)
+            warnings.push(`${campus.name}: class "${name}" has no description yet — add one to CLASS_INFO in scripts/build-data.mjs.`);
           if (/\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\w*\.? (3[2-9]|[4-9]\d)\b/i.test(name))
             warnings.push(`${campus.name}: class name "${name}" has a date that doesn't exist — check it in Registrations.`);
           return {
-            name: name.replace(/^(Kids Discipleship|Childcare):\s*/i, ""),
+            name: section === "Adults" && info ? info.name : name.replace(/^(Kids Discipleship|Childcare|First Steps):\s*/i, ""),
+            desc: info?.desc || null,
             section,
             capacity: t.attributes.maximum_capacity,
             available: Math.max(0, seatsLeft(t)),
             waitlist: !!t.attributes.waitlist,
           };
         });
+      // Keep adult classes in the order CLASS_INFO lists them; anything new goes last.
+      const rank = (c) => { const i = Object.values(CLASS_INFO).findIndex((v) => v.name === c.name); return i < 0 ? 99 : i; };
+      classes.sort((x, y) => (x.section === "Adults" && y.section === "Adults" ? rank(x) - rank(y) : 0));
       if (!classes.length) warnings.push(`${campus.name}: WNAR term "${s.attributes.name}" has no live classes.`);
       const term = s.attributes.name.split("|").pop().replace(new RegExp(campus.name, "i"), "").replace(/\s*-\s*/g, " – ").replace(/\s+/g, " ").trim();
       wnar = { term, starts: start.toISOString(), open: !!s.attributes.open, url: regUrl(s), classes };
@@ -163,7 +191,7 @@ export function build(raw, now = new Date()) {
     if (g.attributes?.archived_at) continue;
     const t = types.find((x) => x.name === typeName.get(String(g.relationships?.group_type?.data?.id)));
     if (!t) continue;
-    const cat = (CATEGORY_RULES.find(([, re]) => re.test(g.attributes.name)) || ["Mixed"])[0];
+    const cat = (CATEGORY_RULES.find(([, re]) => re.test(g.attributes.name)) || ["Coed"])[0];
     t.total += 1;
     t.breakdown[cat] += 1;
   }

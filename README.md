@@ -1,9 +1,9 @@
 # Next Steps Lobby Dashboard
 
-A full-screen lobby display for each Radiant location showing:
-- the upcoming WNAR term and seats left in every live class
-- active groups, broken down by Gather / Grow / Go and Men / Women / Young Adult / Mixed
-- the next Be Radiant class, water baptism and child dedication dates
+A full-screen lobby display for each Radiant location, laid out as a newcomer's path:
+1. **Start here:** next Be Radiant class, First Steps sessions, water baptism, child dedication, prayer meetings
+2. **Grow in a class:** the upcoming Wednesday Night at Radiant term, each class with a one-line description and seat status, plus Students, Kids Discipleship and Childcare
+3. **Find your people:** active groups by Gather / Grow / Go, split into Men / Women / Young Adult / Coed, plus global and local outreach
 
 Data comes from Planning Center and refreshes automatically every Saturday night.
 
@@ -49,6 +49,15 @@ Go to **Actions → Refresh dashboard → Run workflow**. When it turns green, o
 - **Things to check:** each weekly run lists anything that looks off (a missing baptism date, a typo'd class date, a term with no live classes). It appears in the run's summary page on GitHub.
 - **Refresh daily instead of weekly:** in `.github/workflows/refresh.yml`, change `"17 4 * * 0"` to `"17 4 * * *"`.
 - **Heads-up:** GitHub may pause scheduled runs on a repo with no activity for 60 days. If that happens, you'll get an email, and one click on **Enable workflow** turns it back on.
+
+## Seat status
+- **Open:** plenty of room
+- **N spots left · Almost full:** 5 or fewer seats, or a quarter or less of the class
+- **Full · Join the waitlist:** no seats left (the waitlist line shows only if the class has a waitlist)
+
+## Editing the wording
+- **Class descriptions:** `CLASS_INFO` near the top of `scripts/build-data.mjs`. A new class without one still shows, and the weekly run flags it.
+- **Group descriptions, Prayer Room, Students/Kids/Childcare, outreach and footer text:** in `index.html`.
 
 ## How it reads Planning Center
 | Screen section | Where it comes from |
