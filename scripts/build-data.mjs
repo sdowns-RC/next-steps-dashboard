@@ -59,13 +59,15 @@ async function pullRaw() {
   );
   const wanted = signups.data.filter((s) => WNAR_MATCH.test(s.attributes.name));
   const selectionTypes = {};
+  const attendees = {};
   for (const s of wanted) {
     selectionTypes[s.id] = (await pcoGetAll(`/registrations/v2/signups/${s.id}/selection_types?per_page=100`)).data;
+    attendees[s.id] = (await pcoGetAll(`/registrations/v2/signups/${s.id}/attendees?per_page=100&include=selection_type`)).data;
   }
   const groups = await pcoGetAll(
     "/groups/v2/groups?per_page=100&include=group_type&where[archive_status]=not_archived"
   );
-  return { signups, selectionTypes, groups };
+  return { signups, selectionTypes, attendees, groups };
 }
 
 // ---------- Pure transform: raw Planning Center data -> dashboard data ----------
@@ -112,6 +114,17 @@ export function build(raw, now = new Date()) {
     } else {
       const { s, start } = pick;
       const tag = new RegExp(`^\\s*\\[${campus.name}\\]\\s*`, "i");
+      // Seats taken = registrations per class that aren't canceled or waitlisted.
+      const taken = {};
+      for (const a of raw.attendees?.[s.id] || []) {
+        if (a.attributes?.canceled === true || a.attributes?.waitlisted === true) continue;
+        const st = a.relationships?.selection_type?.data?.id;
+        if (st) taken[st] = (taken[st] || 0) + 1;
+      }
+      const seatsLeft = (t) =>
+        typeof t.attributes.available_capacity === "number"
+          ? t.attributes.available_capacity
+          : t.attributes.maximum_capacity - (taken[t.id] || 0);
       const classes = (raw.selectionTypes[s.id] || [])
         .filter((t) => t.attributes.publicly_available && (t.attributes.maximum_capacity || 0) > 0)
         .filter((t) => !/^\s*\[[^\]]+\]/.test(t.attributes.name) || tag.test(t.attributes.name))
@@ -124,7 +137,7 @@ export function build(raw, now = new Date()) {
             name: name.replace(/^(Kids Discipleship|Childcare):\s*/i, ""),
             section,
             capacity: t.attributes.maximum_capacity,
-            available: Math.max(0, t.attributes.available_capacity ?? 0),
+            available: Math.max(0, seatsLeft(t)),
             waitlist: !!t.attributes.waitlist,
           };
         });
