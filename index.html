@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Take Your Next Step · Radiant Church</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Stand-in font until the Proxima Nova files are added to /fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ---- Proxima Nova (licensed). Drop the .woff2 files into /fonts with these names. ---- */
+  @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova Regular"), local("ProximaNova-Regular"), url("fonts/ProximaNova-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova Semibold"), local("ProximaNova-Semibold"), url("fonts/ProximaNova-Semibold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+  @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova Bold"), local("ProximaNova-Bold"), url("fonts/ProximaNova-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+  @font-face { font-family: "Proxima Nova"; src: local("Proxima Nova Extrabold"), local("ProximaNova-Extrabold"), url("fonts/ProximaNova-Extrabold.woff2") format("woff2"); font-weight: 800; font-display: swap; }
+
+  /* ---- Radiant brand ---- */
+  :root {
+    --bg: #000000;
+    --panel: #121212;
+    --panel-2: #1c1c1c;
+    --line: #2a2a2a;
+    --text: #f2eeed;        /* Radiant wordmark white */
+    --cream: #e5d8c6;       /* Radiant icon cream */
+    --muted: #9c958e;
+    --orange: #e44c35;      /* Radiant orange */
+    --full: #5f5a55;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: var(--bg); overflow: hidden; cursor: none; }
+  body { font-family: "Proxima Nova", Montserrat, system-ui, sans-serif; color: var(--text); }
+
+  /* Fixed 1920x1080 stage, scaled to fit any screen */
+  #stage {
+    position: absolute; left: 50%; top: 50%;
+    width: 1920px; height: 1080px;
+    transform-origin: center center;
+    padding: 46px 72px 0;
+    display: grid; grid-template-rows: auto 1fr auto; gap: 30px;
+    transition: translate 2s ease;
+  }
+  .display { font-weight: 800; letter-spacing: -.01em; }
+
+  header { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+  .brand { display: flex; align-items: center; gap: 44px; }
+  .brand img { height: 104px; width: auto; display: block; }
+  .brand .divider { width: 2px; height: 84px; background: var(--line); }
+  h1 { font-size: 66px; font-weight: 800; line-height: 1; }
+  .campus { text-align: right; }
+  .campus .name { font-size: 22px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--orange); }
+  .campus .sub { font-size: 19px; color: var(--muted); margin-top: 8px; }
+
+  main { display: grid; grid-template-columns: 1.45fr 1fr; gap: 30px; min-height: 0; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 30px 38px; min-height: 0; overflow: hidden; }
+  .card h2 { font-size: 40px; font-weight: 800; line-height: 1.1; }
+  .card .lede { font-size: 22px; color: var(--muted); margin-top: 6px; }
+  .label { font-size: 17px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--orange); }
+
+  /* WNAR */
+  #wnar { display: flex; flex-direction: column; gap: 18px; }
+  .classes { display: flex; flex-direction: column; }
+  .class { display: grid; grid-template-columns: 1fr 190px 200px; align-items: center; gap: 24px;
+           padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .class:last-child { border-bottom: 0; }
+  .class .cname { font-size: 29px; font-weight: 700; line-height: 1.15; }
+  .bar { height: 10px; border-radius: 2px; background: var(--panel-2); overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--cream); }
+  .seats { text-align: right; font-size: 25px; font-weight: 700; white-space: nowrap; }
+  .seats small { display: block; font-size: 15px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; margin-top: 2px; }
+  .hot .bar i { background: var(--orange); } .hot .seats { color: var(--orange); }
+  .full .bar i { background: var(--full); } .full .seats, .full .cname { color: var(--full); }
+
+  .subgrid { display: grid; grid-template-columns: 1fr 2fr; gap: 24px; margin-top: auto; }
+  .tiles { display: grid; gap: 8px; margin-top: 10px; }
+  .tiles.kids { grid-template-columns: 1fr; }
+  .tiles.care { grid-template-columns: 1fr 1fr; }
+  .tile { background: var(--panel-2); border-radius: 4px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .tile b { font-size: 20px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tile span { font-size: 18px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+  .tile.hot span { color: var(--orange); } .tile.full b, .tile.full span { color: var(--full); }
+
+  /* Right column */
+  aside { display: grid; grid-template-rows: 1fr auto auto; gap: 22px; min-height: 0; }
+  #groups { display: flex; flex-direction: column; }
+  .ghead { display: flex; justify-content: space-between; align-items: baseline; }
+  .bignum { display: flex; align-items: baseline; gap: 12px; }
+  .bignum b { font-size: 48px; font-weight: 800; line-height: 1; color: var(--text); }
+  .bignum span { font-size: 22px; font-weight: 600; color: var(--muted); }
+  .gtypes { display: flex; flex-direction: column; gap: 10px; margin-top: auto; padding-top: 12px; }
+  .gtype { background: var(--panel-2); border-radius: 4px; padding: 11px 22px; border-left: 6px solid var(--orange); }
+  .gtype .top { display: flex; justify-content: space-between; align-items: baseline; }
+  .gtype .top b { font-size: 30px; font-weight: 800; }
+  .gtype .top span { font-size: 34px; font-weight: 800; color: var(--orange); }
+  .chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+  .chip { font-size: 18px; font-weight: 600; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; }
+  .chip b { color: var(--cream); font-weight: 800; margin-left: 4px; }
+
+  .events { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .event { padding: 18px 22px; display: flex; flex-direction: column; }
+  .event .label { font-size: 15px; letter-spacing: .14em; line-height: 1.3; min-height: 39px; }
+  .event .when { font-size: 44px; font-weight: 800; line-height: 1; margin-top: 10px; white-space: nowrap; }
+  .event .time { font-size: 19px; color: var(--muted); margin-top: 6px; white-space: nowrap; }
+  .event .go-unused { font-size: 14px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--orange); margin-top: auto; padding-top: 10px; }
+  .event.soon .when { font-size: 25px; line-height: 44px; color: var(--cream); }
+
+  .outreach { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 18px 28px; border: 2px solid var(--orange); }
+  .outreach .cta { font-size: 25px; font-weight: 700; line-height: 1.2; margin-top: 8px; }
+  .outreach .tap { color: var(--orange); flex: none; }
+
+  /* Orange band, like the site's buttons */
+  footer { margin: 0 -72px; background: var(--orange); color: #fff; height: 74px; padding: 0 72px;
+           display: flex; justify-content: space-between; align-items: center;
+           font-size: 20px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; }
+
+  #msg { position: absolute; inset: 0; display: none; place-items: center; text-align: center; font-size: 36px; color: var(--muted); padding: 80px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <header>
+    <div class="brand">
+      <img src="radiant-logo.png" alt="Radiant Church">
+      <div class="divider"></div>
+      <h1>Take your next step</h1>
+    </div>
+    <div class="campus"><div class="name" id="campusName"></div><div class="sub" id="updated"></div></div>
+  </header>
+
+  <main>
+    <section class="card" id="wnar">
+      <div>
+        <div class="label">Wednesday Night at Radiant</div>
+        <h2 id="termTitle" style="margin-top:10px"></h2>
+        <div class="lede" id="termSub"></div>
+      </div>
+      <div class="classes" id="adultClasses"></div>
+      <div class="subgrid">
+        <div id="kidsWrap"><div class="label">Kids Discipleship</div><div class="tiles kids" id="kids"></div></div>
+        <div id="careWrap"><div class="label">Childcare</div><div class="tiles care" id="care"></div></div>
+      </div>
+    </section>
+
+    <aside>
+      <section class="card" id="groups">
+        <div class="ghead"><div class="label">Groups</div><div class="bignum"><b id="groupTotal"></b><span>groups meeting now</span></div></div>
+        <div class="gtypes" id="gtypes"></div>
+      </section>
+      <div class="events">
+        <section class="card event" id="beRadiant"></section>
+        <section class="card event" id="baptism"></section>
+        <section class="card event" id="dedication"></section>
+      </div>
+      <section class="card outreach">
+        <div>
+          <div class="label">Global &amp; Local Outreach</div>
+          <div class="cta">Tap to see our global impact trips and local outreach opportunities</div>
+        </div>
+        <div class="tap" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 26V10a4 4 0 0 1 8 0v12"/><path d="M28 20a4 4 0 0 1 8 0v4"/><path d="M36 22a4 4 0 0 1 8 0v8c0 8-6 14-14 14h-2c-5 0-8-2-11-6l-7-9a4 4 0 0 1 6-5l4 4"/><path d="M12 8a12 12 0 0 1 24 0" opacity=".5"/>
+          </svg>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <footer>
+    <div>Sign up at the tap station or in the Radiant Church App</div>
+    <div>radiant.churchcenter.com</div>
+  </footer>
+</div>
+<div id="msg"></div>
+
+<script>
+(() => {
+  const TZ = "America/Detroit";
+  const DATA_URL = "data.json";
+  const REFRESH_MIN = 30;           // re-read data.json this often
+  const CATS = ["Men", "Women", "Young Adult", "Mixed"];
+  
+  const params = new URLSearchParams(location.search);
+  const campusKey = (params.get("campus") || "portage").toLowerCase();
+  const $ = (id) => document.getElementById(id);
+  const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+
+  // Fit the 1920x1080 stage to the screen
+  const stage = $("stage");
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(-50%, -50%) scale(${s})`;
+  }
+  addEventListener("resize", fit); fit();
+
+  // Tiny drift every 10 minutes to protect TVs from burn-in
+  let drift = 0;
+  setInterval(() => { drift = (drift + 1) % 4; const d = [[0,0],[3,2],[0,4],[-3,2]][drift]; stage.style.translate = `${d[0]}px ${d[1]}px`; }, 600000);
+
+  const fmtDate = (iso, opts) => new Intl.DateTimeFormat("en-US", { timeZone: TZ, ...opts }).format(new Date(iso));
+  const dayLong = (iso) => fmtDate(iso, { weekday: "long", month: "long", day: "numeric" });
+  const time = (iso) => fmtDate(iso, { hour: "numeric", minute: "2-digit" });
+
+  function status(c) {
+    if (c.available <= 0) return { cls: "full", text: "Full", note: c.waitlist ? "Join the waitlist" : "" };
+    const nearly = c.available <= 5 || c.available / c.capacity <= 0.25;
+    const text = `${c.available} spot${c.available === 1 ? "" : "s"} left`;
+    return { cls: nearly ? "hot" : "", text, note: nearly ? "Almost full" : "" };
+  }
+
+  function renderWnar(w) {
+    const adults = $("adultClasses"), kids = $("kids"), care = $("care");
+    adults.replaceChildren(); kids.replaceChildren(); care.replaceChildren();
+    if (!w) {
+      $("termTitle").textContent = "New classes coming soon";
+      $("termSub").textContent = "Ask at the Next Steps booth";
+      $("kidsWrap").hidden = $("careWrap").hidden = true;
+      return;
+    }
+    const startsFuture = new Date(w.starts) > new Date();
+    $("termTitle").textContent = w.term;
+    $("termSub").textContent = startsFuture
+      ? `Starts ${dayLong(w.starts)} · ${time(w.starts)}`
+      : `Now meeting Wednesdays · ${time(w.starts)}`;
+    for (const c of w.classes) {
+      const st = status(c);
+      if (c.section === "Adults") {
+        const row = el("div", "class " + st.cls);
+        row.append(el("div", "cname", c.name.replace(/(\w)-(\w)/g, "$1\u2011$2")));
+        const bar = el("div", "bar"), fill = el("i");
+        fill.style.width = `${Math.round(100 * (c.capacity - c.available) / c.capacity)}%`;
+        bar.append(fill); row.append(bar);
+        const seats = el("div", "seats", st.text); if (st.note) seats.append(el("small", null, st.note)); row.append(seats);
+        adults.append(row);
+      } else {
+        const tile = el("div", "tile " + st.cls);
+        tile.append(el("b", null, c.name), el("span", null, st.cls === "full" ? "Full" : `${c.available} left`));
+        (c.section === "Kids" ? kids : care).append(tile);
+      }
+    }
+    $("kidsWrap").hidden = !kids.children.length;
+    $("careWrap").hidden = !care.children.length;
+  }
+
+  function renderGroups(g) {
+    $("groupTotal").textContent = g.total;
+    const wrap = $("gtypes"); wrap.replaceChildren();
+    for (const t of g.types) {
+      const box = el("div", "gtype");
+      const top = el("div", "top"); top.append(el("b", null, t.name), el("span", null, t.total)); box.append(top);
+      const chips = el("div", "chips");
+      for (const k of CATS) {
+        if (!t.breakdown[k]) continue;
+        const chip = el("span", "chip", k); chip.append(el("b", null, t.breakdown[k])); chips.append(chip);
+      }
+      box.append(chips); wrap.append(box);
+    }
+  }
+
+  function renderEvent(id, label, ev) {
+    const box = $(id); box.replaceChildren(); box.className = "card event" + (ev ? "" : " soon");
+    box.append(el("div", "label", label));
+    if (ev) {
+      box.append(el("div", "when", fmtDate(ev.date, { month: "short", day: "numeric" })));
+      box.append(el("div", "time", `${fmtDate(ev.date, { weekday: "short" })} · ${time(ev.date)}`));
+    } else {
+      box.append(el("div", "when", "Coming soon"));
+      box.append(el("div", "time", "Ask at the booth"));
+    }
+  }
+
+  function showMessage(text) { $("msg").textContent = text; $("msg").style.display = "grid"; stage.style.visibility = "hidden"; }
+
+  async function load() {
+    try {
+      const res = await fetch(`${DATA_URL}?t=${Date.now()}`, { cache: "no-store" });
+      if (!res.ok) throw new Error(res.status);
+      const data = await res.json();
+      const c = data.campuses[campusKey];
+      if (!c) return showMessage(`Unknown campus "${campusKey}". Use ?campus=${Object.keys(data.campuses).join(" or ?campus=")}`);
+      $("campusName").textContent = `${c.name} Campus`;
+      $("updated").textContent = `Updated ${fmtDate(data.generatedAt, { month: "short", day: "numeric" })}`;
+      renderWnar(c.wnar);
+      renderGroups(data.groups);
+      renderEvent("beRadiant", "Be Radiant Class", c.beRadiant);
+      renderEvent("baptism", "Water Baptism", c.baptism);
+      renderEvent("dedication", "Child Dedication", c.dedication);
+      $("msg").style.display = "none"; stage.style.visibility = "visible";
+    } catch (e) {
+      // Keep showing the last good data if a refresh fails
+      if (!$("campusName").textContent) showMessage("Loading…");
+    }
+  }
+
+  load();
+  setInterval(load, REFRESH_MIN * 60000);
+  // Full reload once a day around 4 AM to pick up any page updates
+  setInterval(() => { if (fmtDate(new Date().toISOString(), { hour: "numeric", hour12: false }) === "4") location.reload(); }, 3600000);
+})();
+</script>
+</body>
+</html>

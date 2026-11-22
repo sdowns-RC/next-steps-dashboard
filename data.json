@@ -1,0 +1,260 @@
+{
+  "generatedAt": "2026-11-22T15:30:00.000Z",
+  "campuses": {
+    "portage": {
+      "name": "Portage",
+      "wnar": {
+        "term": "Term 3 (Feb 3 – Mar 31)",
+        "starts": "2027-02-03T23:30:00.000Z",
+        "open": true,
+        "url": "https://radiant.churchcenter.com/registrations/events/3958212/reservations/new",
+        "classes": [
+          {
+            "name": "First Steps: Feb 3 - Feb 42",
+            "section": "Adults",
+            "capacity": 18,
+            "available": 18,
+            "waitlist": true
+          },
+          {
+            "name": "First Steps: Mar 3 - Mar 31",
+            "section": "Adults",
+            "capacity": 18,
+            "available": 18,
+            "waitlist": true
+          },
+          {
+            "name": "Spirit and Truth",
+            "section": "Adults",
+            "capacity": 60,
+            "available": 60,
+            "waitlist": true
+          },
+          {
+            "name": "Radiant School of Ministry Part-Time",
+            "section": "Adults",
+            "capacity": 64,
+            "available": 64,
+            "waitlist": true
+          },
+          {
+            "name": "Marriage",
+            "section": "Adults",
+            "capacity": 18,
+            "available": 18,
+            "waitlist": true
+          },
+          {
+            "name": "Proclaim",
+            "section": "Adults",
+            "capacity": 18,
+            "available": 18,
+            "waitlist": true
+          },
+          {
+            "name": "K-2nd Grade",
+            "section": "Kids",
+            "capacity": 18,
+            "available": 18,
+            "waitlist": true
+          },
+          {
+            "name": "3-5th Grade",
+            "section": "Kids",
+            "capacity": 35,
+            "available": 35,
+            "waitlist": true
+          },
+          {
+            "name": "6 Weeks - Crawling",
+            "section": "Childcare",
+            "capacity": 12,
+            "available": 12,
+            "waitlist": true
+          },
+          {
+            "name": "Walking- 2 years old",
+            "section": "Childcare",
+            "capacity": 20,
+            "available": 20,
+            "waitlist": true
+          },
+          {
+            "name": "3 years old - PreK",
+            "section": "Childcare",
+            "capacity": 20,
+            "available": 20,
+            "waitlist": true
+          }
+        ]
+      },
+      "baptism": null,
+      "beRadiant": {
+        "date": "2026-12-16T23:30:00.000Z",
+        "name": "Be Radiant Class - December 16, 2026",
+        "open": true,
+        "url": "https://radiant.churchcenter.com/registrations/events/3680094/reservations/new"
+      },
+      "dedication": null
+    },
+    "richland": {
+      "name": "Richland",
+      "wnar": {
+        "term": "Term 3 (Feb 3 – Mar 31)",
+        "starts": "2027-02-03T23:30:00.000Z",
+        "open": true,
+        "url": "https://radiant.churchcenter.com/registrations/events/3958118/reservations/new",
+        "classes": [
+          {
+            "name": "First Steps: Feb 3 - Feb 24",
+            "section": "Adults",
+            "capacity": 18,
+            "available": 18,
+            "waitlist": false
+          },
+          {
+            "name": "First Steps: Mar 3 - Mar 31",
+            "section": "Adults",
+            "capacity": 18,
+            "available": 18,
+            "waitlist": false
+          },
+          {
+            "name": "Spirit and Truth",
+            "section": "Adults",
+            "capacity": 60,
+            "available": 60,
+            "waitlist": true
+          },
+          {
+            "name": "Radiant School of Ministry Part-Time",
+            "section": "Adults",
+            "capacity": 88,
+            "available": 88,
+            "waitlist": true
+          },
+          {
+            "name": "Marriage",
+            "section": "Adults",
+            "capacity": 18,
+            "available": 18,
+            "waitlist": false
+          },
+          {
+            "name": "Proclaim",
+            "section": "Adults",
+            "capacity": 18,
+            "available": 17,
+            "waitlist": false
+          },
+          {
+            "name": "K & 1st Grade",
+            "section": "Kids",
+            "capacity": 20,
+            "available": 20,
+            "waitlist": true
+          },
+          {
+            "name": "2nd & 3rd Grade",
+            "section": "Kids",
+            "capacity": 20,
+            "available": 20,
+            "waitlist": true
+          },
+          {
+            "name": "4th & 5th Grade",
+            "section": "Kids",
+            "capacity": 20,
+            "available": 20,
+            "waitlist": true
+          },
+          {
+            "name": "6 weeks - Crawling",
+            "section": "Childcare",
+            "capacity": 8,
+            "available": 8,
+            "waitlist": true
+          },
+          {
+            "name": "Walking- 23 Months",
+            "section": "Childcare",
+            "capacity": 20,
+            "available": 20,
+            "waitlist": true
+          },
+          {
+            "name": "2 years old",
+            "section": "Childcare",
+            "capacity": 20,
+            "available": 20,
+            "waitlist": true
+          },
+          {
+            "name": "3 years old",
+            "section": "Childcare",
+            "capacity": 20,
+            "available": 20,
+            "waitlist": true
+          },
+          {
+            "name": "PreK",
+            "section": "Childcare",
+            "capacity": 20,
+            "available": 20,
+            "waitlist": true
+          }
+        ]
+      },
+      "baptism": null,
+      "beRadiant": {
+        "date": "2026-12-16T23:30:00.000Z",
+        "name": "Be Radiant Class - December 16, 2026",
+        "open": true,
+        "url": "https://radiant.churchcenter.com/registrations/events/3680094/reservations/new"
+      },
+      "dedication": null
+    }
+  },
+  "groups": {
+    "total": 67,
+    "types": [
+      {
+        "name": "Gather",
+        "total": 16,
+        "breakdown": {
+          "Men": 3,
+          "Women": 4,
+          "Young Adult": 1,
+          "Mixed": 8
+        }
+      },
+      {
+        "name": "Grow",
+        "total": 44,
+        "breakdown": {
+          "Men": 7,
+          "Women": 17,
+          "Young Adult": 9,
+          "Mixed": 11
+        }
+      },
+      {
+        "name": "Go",
+        "total": 7,
+        "breakdown": {
+          "Men": 1,
+          "Women": 0,
+          "Young Adult": 0,
+          "Mixed": 6
+        }
+      }
+    ]
+  },
+  "warnings": [
+    "Portage: class name \"First Steps: Feb 3 - Feb 42\" has a date that doesn't exist — check it in Registrations.",
+    "Portage: no upcoming baptism date in Planning Center Registrations (screen shows \"coming soon\").",
+    "Portage: no upcoming child dedication date in Planning Center Registrations (screen shows \"coming soon\").",
+    "Richland: no upcoming baptism date in Planning Center Registrations (screen shows \"coming soon\").",
+    "Richland: no upcoming child dedication date in Planning Center Registrations (screen shows \"coming soon\")."
+  ]
+}

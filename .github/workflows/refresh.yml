@@ -1,0 +1,55 @@
+name: Refresh dashboard
+
+on:
+  schedule:
+    # Every Saturday night at 11:17 PM Eastern (Sunday 04:17 UTC), so Sunday's screens are fresh.
+    # For daily refreshes instead, change the last field from 0 to * (e.g. "17 4 * * *").
+    - cron: "17 4 * * 0"
+  workflow_dispatch: {} # "Run workflow" button for an on-demand refresh
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Pull from Planning Center
+        if: github.event_name != 'push'
+        env:
+          PCO_APP_ID: ${{ secrets.PCO_APP_ID }}
+          PCO_SECRET: ${{ secrets.PCO_SECRET }}
+        run: node scripts/build-data.mjs
+
+      - name: Save data.json
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "next-steps-bot"
+          git config user.email "next-steps-bot@users.noreply.github.com"
+          git add data.json
+          git commit -m "Weekly Planning Center refresh" || echo "No changes"
+          git push
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deploy
+        uses: actions/deploy-pages@v4
