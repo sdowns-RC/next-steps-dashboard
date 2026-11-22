@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-22T15:30:00.000Z",
+  "generatedAt": "2026-11-22T17:13:03.538Z",
   "campuses": {
     "portage": {
       "name": "Portage",
@@ -13,77 +13,77 @@
             "name": "First Steps: Feb 3 - Feb 42",
             "section": "Adults",
             "capacity": 18,
-            "available": 18,
+            "available": 0,
             "waitlist": true
           },
           {
             "name": "First Steps: Mar 3 - Mar 31",
             "section": "Adults",
             "capacity": 18,
-            "available": 18,
+            "available": 0,
             "waitlist": true
           },
           {
             "name": "Spirit and Truth",
             "section": "Adults",
             "capacity": 60,
-            "available": 60,
+            "available": 0,
             "waitlist": true
           },
           {
             "name": "Radiant School of Ministry Part-Time",
             "section": "Adults",
             "capacity": 64,
-            "available": 64,
-            "waitlist": true
-          },
-          {
-            "name": "Marriage",
-            "section": "Adults",
-            "capacity": 18,
-            "available": 18,
-            "waitlist": true
-          },
-          {
-            "name": "Proclaim",
-            "section": "Adults",
-            "capacity": 18,
-            "available": 18,
+            "available": 0,
             "waitlist": true
           },
           {
             "name": "K-2nd Grade",
             "section": "Kids",
             "capacity": 18,
-            "available": 18,
+            "available": 0,
             "waitlist": true
           },
           {
             "name": "3-5th Grade",
             "section": "Kids",
             "capacity": 35,
-            "available": 35,
+            "available": 0,
             "waitlist": true
           },
           {
             "name": "6 Weeks - Crawling",
             "section": "Childcare",
             "capacity": 12,
-            "available": 12,
+            "available": 0,
             "waitlist": true
           },
           {
             "name": "Walking- 2 years old",
             "section": "Childcare",
             "capacity": 20,
-            "available": 20,
+            "available": 0,
             "waitlist": true
           },
           {
             "name": "3 years old - PreK",
             "section": "Childcare",
             "capacity": 20,
-            "available": 20,
+            "available": 0,
+            "waitlist": true
+          },
+          {
+            "name": "Marriage",
+            "section": "Adults",
+            "capacity": 18,
+            "available": 0,
+            "waitlist": true
+          },
+          {
+            "name": "Proclaim",
+            "section": "Adults",
+            "capacity": 18,
+            "available": 0,
             "waitlist": true
           }
         ]
@@ -109,99 +109,99 @@
             "name": "First Steps: Feb 3 - Feb 24",
             "section": "Adults",
             "capacity": 18,
-            "available": 18,
+            "available": 0,
             "waitlist": false
           },
           {
             "name": "First Steps: Mar 3 - Mar 31",
             "section": "Adults",
             "capacity": 18,
-            "available": 18,
+            "available": 0,
             "waitlist": false
           },
           {
             "name": "Spirit and Truth",
             "section": "Adults",
             "capacity": 60,
-            "available": 60,
+            "available": 0,
             "waitlist": true
           },
           {
             "name": "Radiant School of Ministry Part-Time",
             "section": "Adults",
             "capacity": 88,
-            "available": 88,
+            "available": 0,
             "waitlist": true
-          },
-          {
-            "name": "Marriage",
-            "section": "Adults",
-            "capacity": 18,
-            "available": 18,
-            "waitlist": false
-          },
-          {
-            "name": "Proclaim",
-            "section": "Adults",
-            "capacity": 18,
-            "available": 17,
-            "waitlist": false
           },
           {
             "name": "K & 1st Grade",
             "section": "Kids",
             "capacity": 20,
-            "available": 20,
+            "available": 0,
             "waitlist": true
           },
           {
             "name": "2nd & 3rd Grade",
             "section": "Kids",
             "capacity": 20,
-            "available": 20,
+            "available": 0,
             "waitlist": true
           },
           {
             "name": "4th & 5th Grade",
             "section": "Kids",
             "capacity": 20,
-            "available": 20,
+            "available": 0,
             "waitlist": true
           },
           {
             "name": "6 weeks - Crawling",
             "section": "Childcare",
             "capacity": 8,
-            "available": 8,
+            "available": 0,
             "waitlist": true
           },
           {
             "name": "Walking- 23 Months",
             "section": "Childcare",
             "capacity": 20,
-            "available": 20,
+            "available": 0,
             "waitlist": true
           },
           {
             "name": "2 years old",
             "section": "Childcare",
             "capacity": 20,
-            "available": 20,
+            "available": 0,
             "waitlist": true
           },
           {
             "name": "3 years old",
             "section": "Childcare",
             "capacity": 20,
-            "available": 20,
+            "available": 0,
             "waitlist": true
           },
           {
             "name": "PreK",
             "section": "Childcare",
             "capacity": 20,
-            "available": 20,
+            "available": 0,
             "waitlist": true
+          },
+          {
+            "name": "Marriage",
+            "section": "Adults",
+            "capacity": 18,
+            "available": 0,
+            "waitlist": false
+          },
+          {
+            "name": "Proclaim",
+            "section": "Adults",
+            "capacity": 18,
+            "available": 0,
+            "waitlist": false
           }
         ]
       },
