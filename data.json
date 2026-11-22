@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-22T21:18:10.042Z",
+  "generatedAt": "2026-11-22T21:20:03.881Z",
   "campuses": {
     "portage": {
       "name": "Portage",
@@ -23,22 +23,6 @@
             "section": "First Steps",
             "capacity": 18,
             "available": 18,
-            "waitlist": true
-          },
-          {
-            "name": "Spirit & Truth",
-            "desc": "See the big story of the Bible and grow deeper with God.",
-            "section": "Adults",
-            "capacity": 60,
-            "available": 60,
-            "waitlist": true
-          },
-          {
-            "name": "Radiant School of Ministry Part-Time",
-            "desc": "Ministry training for everyday leaders, one night a week.",
-            "section": "Adults",
-            "capacity": 64,
-            "available": 64,
             "waitlist": true
           },
           {
@@ -82,6 +66,14 @@
             "waitlist": true
           },
           {
+            "name": "Spirit & Truth",
+            "desc": "See the big story of the Bible and grow deeper with God.",
+            "section": "Adults",
+            "capacity": 60,
+            "available": 60,
+            "waitlist": true
+          },
+          {
             "name": "Proclaim",
             "desc": "Learn to share your faith naturally in everyday life.",
             "section": "Adults",
@@ -95,6 +87,14 @@
             "section": "Adults",
             "capacity": 18,
             "available": 18,
+            "waitlist": true
+          },
+          {
+            "name": "Radiant School of Ministry Part-Time",
+            "desc": "Ministry training for everyday leaders, one night a week.",
+            "section": "Adults",
+            "capacity": 64,
+            "available": 64,
             "waitlist": true
           }
         ]
@@ -134,22 +134,6 @@
             "capacity": 18,
             "available": 18,
             "waitlist": false
-          },
-          {
-            "name": "Spirit & Truth",
-            "desc": "See the big story of the Bible and grow deeper with God.",
-            "section": "Adults",
-            "capacity": 60,
-            "available": 60,
-            "waitlist": true
-          },
-          {
-            "name": "Radiant School of Ministry Part-Time",
-            "desc": "Ministry training for everyday leaders, one night a week.",
-            "section": "Adults",
-            "capacity": 88,
-            "available": 88,
-            "waitlist": true
           },
           {
             "name": "K & 1st Grade",
@@ -216,6 +200,14 @@
             "waitlist": true
           },
           {
+            "name": "Spirit & Truth",
+            "desc": "See the big story of the Bible and grow deeper with God.",
+            "section": "Adults",
+            "capacity": 60,
+            "available": 60,
+            "waitlist": true
+          },
+          {
             "name": "Proclaim",
             "desc": "Learn to share your faith naturally in everyday life.",
             "section": "Adults",
@@ -230,6 +222,14 @@
             "capacity": 18,
             "available": 18,
             "waitlist": false
+          },
+          {
+            "name": "Radiant School of Ministry Part-Time",
+            "desc": "Ministry training for everyday leaders, one night a week.",
+            "section": "Adults",
+            "capacity": 88,
+            "available": 88,
+            "waitlist": true
           }
         ]
       },
